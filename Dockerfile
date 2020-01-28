@@ -3,11 +3,11 @@
 #
 # Build the image with:
 #
-# docker build -f Dockerfile -t quarkus/language-service-jvm .
+# docker build --no-cache -t exxcellent/cps-language-service .
 #
 # Then run the container using:
 #
-# docker run -i --rm -p 8082:8082 quarkus/language-service-jvm
+# docker run -i --rm -p 8082:8082 exxcellent/cps-language-service
 #
 ###
 # our base build image
@@ -20,7 +20,7 @@ COPY ./pom.xml ./pom.xml
 COPY ./src ./src
 
 # build for release
-RUN mvn package
+RUN mvn clean package
 
 # our final base image
 FROM fabric8/java-alpine-openjdk8-jre:1.6.5
