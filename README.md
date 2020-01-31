@@ -1,30 +1,26 @@
-# language-service project
+# Country-Service
 
-This project uses Quarkus, the Supersonic Subatomic Java Framework.
+This service is one of the backend services used for a showcase for a microservice architecture.
+The other services are [country-service](https://github.com/exxcellent/microservice-country-service) and [currency-service](https://github.com/exxcellent/microservice-currency-service). The showcase is part of a guest lecture at the University Stuttgart. The documents to the lecture can be found [here](https://github.com/exxcellent/microservices-kubernetes-docs).
 
-If you want to learn more about Quarkus, please visit its website: https://quarkus.io/ .
+This project uses [Quarkus](https://quarkus.io/), the Supersonic Subatomic Java Framework.
 
 ## Running the application in dev mode
 
 You can run your application in dev mode that enables live coding using:
 ```
-./mvnw quarkus:dev
+mvn package quarkus:dev -Ddebug=5006
 ```
 
 ## Packaging and running the application
 
-The application is packageable using `./mvnw package`.
+The application is packageable using `mvn package`.
 It produces the executable `language-service-1.0.0-SNAPSHOT-runner.jar` file in `/target` directory.
 Be aware that it’s not an _über-jar_ as the dependencies are copied into the `target/lib` directory.
 
 The application is now runnable using `java -jar target/language-service-1.0.0-SNAPSHOT-runner.jar`.
 
-## Creating a native executable
+## Creating a docker image
+The application can be provided as docker image by building the image with `docker build --no-cache -t exxcellent/cps-language-service .`
 
-You can create a native executable using: `./mvnw package -Pnative`.
-
-Or you can use Docker to build the native executable using: `./mvnw package -Pnative -Dquarkus.native.container-build=true`.
-
-You can then execute your binary: `./target/language-service-1.0.0-SNAPSHOT-runner`
-
-If you want to learn more about building native executables, please consult https://quarkus.io/guides/building-native-image-guide .
+The application can then be started with the command `docker run -i --rm -p 8082:8082 exxcellent/cps-language-service` and is available on `localhost:8082`.
